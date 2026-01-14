@@ -1,5 +1,6 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+
 import Navbar from "./Componect/Navbar";
 import TopHeader from "./Componect/TopHeader";
 import Home from "./pages/Home";
@@ -23,38 +24,39 @@ import MT5Android from "./pages/MT5Android";
 import MT5IOS from "./pages/MT5IOS";
 import AppLayout from "./Componect/AppLayout";
 import Footer from "./Componect/Footer";
+import ScrollToTop from "./Componect/ScrollToTop";
 
 function App() {
   return (
     <AppLayout>
-      <Router>
-        <TopHeader />
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/account-types" element={<AccountTypes />} />
-          <Route path="/instruments-list" element={<InstrumentsList />} />
-          <Route path="/academy" element={<Academy />} />
-          <Route path="/calculator" element={<Calculator />} />
-          <Route path="/platform" element={<Platform />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/forex" element={<Forex />} />
-          <Route path="/metals" element={<Metals />} />
-          <Route path="/oil" element={<Oil />} />
-          <Route path="/index" element={<Index />} />
-          <Route path="/crypto" element={<Crypto />} />
-          <Route path="/margin-calculator" element={<MarginCalculator />} />
-          <Route path="/profit-calculator" element={<ProfitCalculator />} />
-          <Route path="/mt5-windows" element={<MT5Windows />} />
-          <Route path="/mt5-android" element={<MT5Android />} />
-          <Route path="/mt5-ios" element={<MT5IOS />} />
-        </Routes>
-      </Router>
-      <Footer/>
+          <ScrollToTop /> 
+      <TopHeader />
+      <Navbar />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/account-types" element={<AccountTypes />} />
+        <Route path="/instruments-list" element={<InstrumentsList />} />
+        <Route path="/academy" element={<Academy />} />
+        <Route path="/calculator" element={<Calculator />} />
+        <Route path="/platform" element={<Platform />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/forex" element={<Forex />} />
+        <Route path="/metals" element={<Metals />} />
+        <Route path="/oil" element={<Oil />} />
+        <Route path="/index" element={<Index />} />
+        <Route path="/crypto" element={<Crypto />} />
+        <Route path="/margin-calculator" element={<MarginCalculator />} />
+        <Route path="/profit-calculator" element={<ProfitCalculator />} />
+        <Route path="/mt5-windows" element={<MT5Windows />} />
+        <Route path="/mt5-android" element={<MT5Android />} />
+        <Route path="/mt5-ios" element={<MT5IOS />} />
+      </Routes>
+
+      <Footer />
     </AppLayout>
-    
   );
 }
 

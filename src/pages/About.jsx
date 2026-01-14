@@ -55,7 +55,6 @@ const About = () => {
 
   return (
     <div className="font-sans text-gray-800 mt-[1px]">
-
       {/* Page Banner */}
       <PageBanner
         title="About Us"
@@ -122,46 +121,55 @@ const About = () => {
 
       {/* Section 2: Fixed Background with Text & Image */}
       <section
-        className="relative w-full py-20 px-5 overflow-hidden bg-cover bg-center bg-fixed"
+        className="relative w-full py-14 sm:py-20 px-4 sm:px-6 
+  bg-cover bg-center overflow-hidden"
         style={{
           backgroundImage:
-            "url('http://nebulafinserv.com/assets/img/abtinnerbgsec.jpg')",
+            "url(https://media.istockphoto.com/id/1465618017/photo/businessmen-investor-think-before-buying-stock-market-investment-using-smartphone-to-analyze.jpg?s=612x612&w=0&k=20&c=YNEkfoME1jbz6FUJImxCQtaGZZntrf7u-Byxmgk4pOY=)",
         }}
       >
-        {/* Transparent Overlay */}
-        <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/40"></div>
 
-        <div className="relative z-10 flex flex-col md:flex-row items-start justify-between gap-10 max-w-7xl mx-auto w-full">
-          {/* Left Text */}
+        <div className="relative z-10 max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-10">
+          {/* LEFT CONTENT */}
           <div
             ref={textRef}
             data-type="text"
-            className={`md:w-1/2 text-left w-full transition-all duration-700
-              ${visibleText ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}
-            style={{
-              backgroundColor: "rgba(255, 255, 255, 0.1)",
-              padding: "2rem",
-              borderRadius: "1rem",
-            }}
+            className={`w-full md:w-1/2 
+      backdrop-blur-md bg-white/10 
+      rounded-2xl p-6 sm:p-8 lg:p-10
+      transition-all duration-700
+      ${
+        visibleText ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
+      }`}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-[#a1785b]">
+            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-[#d2aa73] mb-4">
               ABOUT NEBULA FINANCIAL SERVICES LTD
             </h2>
-            <hr className="border-t border-[#a1785b] w-36 mb-6" />
-            <p className="text-3xl font-semibold italic leading-relaxed text-[#a1785b] mt-2">
-              Nebula Financial Services Ltd has globally acquired brand recognition by providing a world-class trading environment to the investors without any divergence of interest.
+
+            <div className="h-1 w-24 bg-[#d2aa73] mb-6"></div>
+
+            <p className="text-sm sm:text-base lg:text-xl font-medium italic leading-relaxed text-[#f3e7d8]">
+              Nebula Financial Services Ltd has globally acquired brand
+              recognition by providing a world-class trading environment to
+              investors without any divergence of interest.
             </p>
-            <p className="text-3xl font-semibold italic leading-relaxed mt-4 text-[#a1785b]">
-              Nebula Financial Services Ltd can be described as the future of Forex trading with unique business solutions. We try to enhance your experience by providing the best trading solutions so that you can gain superior control.
+
+            <p className="text-sm sm:text-base lg:text-xl font-medium italic leading-relaxed text-[#f3e7d8] mt-4">
+              Nebula Financial Services Ltd represents the future of Forex
+              trading with unique business solutions, delivering superior
+              control and advanced trading experiences.
             </p>
           </div>
 
-          {/* Right Image */}
-          <div className="md:w-1/2 w-full">
+          {/* RIGHT IMAGE */}
+          <div className="w-full md:w-1/2">
             <img
               src="http://nebulafinserv.com/assets/img/abtinnerbgsec.jpg"
               alt="Nebula Team"
-              className="rounded-xl shadow-lg w-full object-cover"
+              className="w-full h-[240px] sm:h-[320px] md:h-[420px] 
+        object-cover rounded-2xl shadow-2xl"
             />
           </div>
         </div>
