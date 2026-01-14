@@ -8,14 +8,14 @@ import WhyUs from "../Componect/WhyUs";
 
 const Home = () => {
   return (
-    <>   
-      <HeroSlider/>
-      <MarketTicker/>
-      <FeaturesBar/>
-      <WhyUs/>
-      <ForexSteps/>
-      <MarketSection/>
-      <IntroducingBroker/>
+    <>
+      <HeroSlider />
+      <MarketTicker />
+      <FeaturesBar />
+      <WhyUs />
+      <ForexSteps />
+      <MarketSection />
+      <IntroducingBroker />
     </>
   );
 };

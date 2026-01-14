@@ -70,7 +70,7 @@ const Services = () => {
       <PageBanner
         title="Our Services"
         breadcrumb="Services"
-        bgImage="/Futures-in-Stock-Market.webp"
+        bgImage="https://images.unsplash.com/photo-1641580529558-a96cf6efbc72?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHRyYWRpbmclMjBjaGFydHxlbnwwfHwwfHx8MA%3D%3D"
       />
 
       {/* Services Section */}

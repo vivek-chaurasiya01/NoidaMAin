@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const PageBanner = ({ title, breadcrumb, bgImage }) => {
   return (
     <section
@@ -13,15 +15,21 @@ const PageBanner = ({ title, breadcrumb, bgImage }) => {
       <div className="absolute inset-0 bg-black/60"></div>
 
       {/* CONTENT */}
- <div className="max-w-7xl flex ">
-        <div className="relative z-10 w-full text-white flex flex-col items-center justify-center text-center px-6">
-        <h1 className="text-3xl font-bold uppercase">{title}</h1>
+      <div className="max-w-7xl flex">
+        <div className="relative z-10 w-full text-white flex flex-col items-center justify-center text-start px-6">
+          <h1 className="text-3xl font-bold uppercase">{title}</h1>
 
-        <p className="mt-2 text-sm text-gray-300">
-          Home / <span className="text-[#d2aa73]">{breadcrumb}</span>
-        </p>
+          <p className="mt-2 text-sm text-gray-300">
+            <Link
+              to="/"
+              className="hover:text-[#d2aa73] transition-colors duration-300"
+            >
+              Home
+            </Link>{" "}
+            / <span className="text-[#d2aa73]">{breadcrumb}</span>
+          </p>
+        </div>
       </div>
- </div>
     </section>
   );
 };

@@ -65,7 +65,7 @@ const MarketTicker = () => {
           }
         }
         .animate-scroll {
-          animation: scroll 30s linear infinite;
+          animation: scroll 15s linear infinite;
         }
         .animate-scroll:hover {
           animation-play-state: paused;

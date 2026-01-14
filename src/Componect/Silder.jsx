@@ -31,11 +31,16 @@ const HeroSlider = () => {
 
   return (
     <section
-      className="relative  w-full h-[640px] sm:h-[700px]
-overflow-hidden bg-gradient-to-b from-black to-[#0b0b0b]"
+      className="relative mt-[1px] w-full h-[640px] sm:h-[700px] overflow-hidden"
     >
-      {/* BACKGROUND GRAPH EFFECT */}
-      <div className="absolute inset-0 bg-[url('/graph-bg.png')] bg-cover bg-center opacity-20"></div>
+      {/* FIXED BACKGROUND IMAGE */}
+      <div 
+        className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1745509267945-b25cbb4d50ef?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8dHJhZGluZyUyMHdoaXRlJTIwY2hhcnR8ZW58MHx8MHx8fDA%3D')] bg-cover bg-center bg-fixed"
+        style={{ backgroundAttachment: 'fixed' }}
+      ></div>
+      
+      {/* BLACK TRANSPARENT OVERLAY */}
+      <div className="absolute inset-0 bg-black/95"></div>
 
       {slides.map((slide, i) => (
         <div
@@ -52,16 +57,16 @@ overflow-hidden bg-gradient-to-b from-black to-[#0b0b0b]"
           <div className="relative z-10 max-w-7xl mx-auto h-full flex flex-col-reverse lg:flex-row items-center justify-center px-4 sm:px-6 py-8 lg:py-0">
             {/* TEXT CONTENT */}
             <div className="w-full lg:w-1/2 text-center lg:text-left text-white mt-6 lg:mt-0">
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-snug">
+              <h1 className="text-2xl sm:text-4xl lg:text-4xl xl:text-5xl font-bold leading-snug">
                 {slide.title}{" "}
                 <span className="text-[#d2aa73]">{slide.highlight}</span>
               </h1>
 
-              <p className="mt-4 sm:mt-5 text-gray-300 text-base sm:text-lg">
+              <p className="mt-3 sm:mt-5 text-gray-300 text-lg sm:text-xl lg:text-2xl">
                 {slide.desc}
               </p>
 
-              <button className="mt-6 sm:mt-8 bg-[#d2aa73] text-black px-6 py-2 sm:px-8 sm:py-3 font-semibold rounded hover:opacity-90 transition">
+              <button className="mt-6 sm:mt-8 bg-[#d2aa73] text-black px-8 py-3 sm:px-10 sm:py-4 text-lg font-semibold rounded hover:opacity-90 transition">
                 {slide.btn}
               </button>
             </div>

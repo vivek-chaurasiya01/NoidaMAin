@@ -1,4 +1,7 @@
+import { useScrollAnimation } from "../hooks/useScrollAnimation";
+
 const MarketSection = () => {
+  const [ref, isVisible] = useScrollAnimation(0.1);
   const markets = [
     {
       title: "FOREX",
@@ -23,13 +26,18 @@ const MarketSection = () => {
   ];
 
   return (
-    <section className="relative w-full bg-gradient-to-br from-[#0a1f2e] via-[#0d4c63] to-[#0a2f3d] py-20 px-6 overflow-hidden">
+    <section ref={ref} className="relative w-full py-20 px-6 overflow-hidden">
       
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-[#d4a25a] rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
-      </div>
+      {/* FIXED BACKGROUND IMAGE */}
+      <div 
+        className="absolute inset-0 bg-[url('https://img.freepik.com/premium-vector/stylish-stock-market-forex-trading-charts-gray-color-financial-reports_122317-211.jpg?semt=ais_hybrid&w=740&q=80')] bg-cover bg-center bg-fixed"
+        style={{ backgroundAttachment: 'fixed' }}
+      ></div>
+      
+      {/* TRANSPARENT OVERLAY */}
+<div className="absolute inset-0 bg-[#171f2c]/85"></div>
+
+
 
       {/* Heading */}
       <div className="relative text-center text-white mb-16">
@@ -46,21 +54,32 @@ const MarketSection = () => {
         {markets.map((item, index) => (
           <div
             key={index}
-            className="relative bg-white rounded-2xl overflow-hidden p-8 pt-16 group cursor-pointer shadow-xl transition-all duration-500 hover:scale-105"
+            className="relative bg-white rounded-2xl overflow-hidden p-8 min-h-[450px] flex flex-col items-center justify-center group cursor-pointer shadow-xl transition-all duration-500 hover:scale-105"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? 'translateY(0)' : 'translateY(50px)',
+              transitionDelay: `${index * 150}ms`
+            }}
           >
+            {/* BACKGROUND IMAGE INSIDE CARD */}
+            <div 
+              className="absolute inset-0 bg-cover bg-center opacity-10"
+              style={{ backgroundImage: `url(${item.icon})` }}
+            ></div>
+
             {/* Black Overlay - Slides from Bottom to Top */}
             <div className="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-in-out"></div>
 
-            {/* IMAGE INSTEAD OF ICON */}
-            <div className="absolute top-1 mb-10 left-1/2 -translate-x-1/2 ">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#d4a25a] to-[#b8873f] flex items-center justify-center shadow-xl transition-all duration-500 overflow-hidden">
+            {/* IMAGE ICON */}
+            <div className="relative mb-6 z-10">
+              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#d4a25a] to-[#b8873f] flex items-center justify-center shadow-xl">
                 <img src={item.icon} alt={item.title} className="w-12 h-12 object-contain" />
               </div>
             </div>
 
             {/* Content */}
-            <div className="relative z-10 text-center">
-              <h3 className="text-2xl font-bold text-[#d4a25a] mb-4 pt-5 group-hover:text-white transition-colors duration-700">
+            <div className="relative z-10 text-center flex flex-col items-center justify-center">
+              <h3 className="text-2xl font-bold text-[#d4a25a] mb-4 group-hover:text-white transition-colors duration-700">
                 {item.title}
               </h3>
 

@@ -1,4 +1,7 @@
 import { ArrowRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import Tilt from "react-parallax-tilt";
+import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const features = [
   { title: "Tight Raw Spreads from", value: "0.0 pips" },
@@ -8,67 +11,87 @@ const features = [
 ];
 
 const FeaturesBar = () => {
+  const [ref] = useScrollAnimation(0.1);
+  const [visibleCards, setVisibleCards] = useState([]);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setVisibleCards((prev) =>
+              prev.includes(index) ? prev : [...prev, index]
+            );
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    const cards = sectionRef.current?.querySelectorAll(".feature-card");
+    cards?.forEach((card) => observer.observe(card));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="w-full bg-black py-4">
-      <div className="px-4 lg:px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <section ref={sectionRef} className="w-full bg-black py-8">
+      <div className="px-4 lg:px-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((item, i) => (
-            <div
+            <Tilt
               key={i}
-              className="
-                relative overflow-hidden group cursor-pointer
-                bg-[#d2aa73] text-white text-center
-                py-6 px-4 border border-black
-                transition-all duration-300
-                hover:-translate-y-2
-              "
+              tiltMaxAngleX={10}
+              tiltMaxAngleY={10}
+              glareEnable={true}
+              glareMaxOpacity={0.18}
+              glareColor="#ffffff"
+              className="feature-card"
             >
-              {/* TEXT */}
-              <p className="text-sm font-medium transition-transform duration-300 group-hover:-translate-x-2">
-                {item.title}
-              </p>
-              <h3 className="text-2xl font-bold mt-1 transition-transform duration-300 group-hover:-translate-x-2">
-                {item.value}
-              </h3>
-
-              {/* 👉 ARROW SIDE GLOW (PEECHE DIKHE) */}
-              <span
-                className="
-                  absolute top-0 right-0 h-full w-16
-                  bg-gradient-to-l from-black/25 to-transparent
-                  opacity-0 group-hover:opacity-100
-                  transition-opacity duration-300
-                "
-              />
-
-              {/* 👉 ARROW */}
               <div
-                className="
-                  absolute right-4 top-1/2 -translate-y-1/2
-                  opacity-0
-                  group-hover:opacity-100
-                  group-hover:animate-arrow-move
-                "
+                className={`
+                  group relative overflow-hidden cursor-pointer
+                  rounded-2xl bg-[#d2aa73] text-white text-center
+                  py-7 px-5 min-h-[140px]
+                  border border-black/20
+                  shadow-xl transition-all duration-700
+                  hover:scale-105 hover:shadow-2xl
+                  ${
+                    visibleCards.includes(i)
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-10"
+                  }
+                `}
+                style={{ transitionDelay: `${i * 150}ms` }}
               >
-                <ArrowRight size={24} strokeWidth={3} />
+                {/* SOFT HOVER OVERLAY */}
+                <div
+                  className="
+                    absolute inset-0
+                    bg-gradient-to-br from-black/20 to-black/40
+                    opacity-0 group-hover:opacity-100
+                    transition-opacity duration-500
+                  "
+                />
+
+                {/* CONTENT */}
+                <div className="relative z-10">
+                  <p className="text-lg font-medium tracking-wide font-bold">
+                    {item.title}
+                  </p>
+                  <h3 className="text-2xl font-bold mt-1">{item.value}</h3>
+                </div>
+
+                {/* ARROW */}
+
               </div>
-            </div>
+            </Tilt>
           ))}
         </div>
       </div>
 
-      {/* 🔥 CUSTOM ANIMATION */}
-      <style>{`
-        @keyframes arrow-move {
-          0% { transform: translateY(-50%) translateX(0); }
-          50% { transform: translateY(-50%) translateX(6px); }
-          100% { transform: translateY(-50%) translateX(0); }
-        }
 
-        .animate-arrow-move {
-          animation: arrow-move 1s ease-in-out infinite;
-        }
-      `}</style>
     </section>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Tilt from "react-parallax-tilt";
 import PageBanner from "../Componect/PageBanner";
+
 import OpportunitySection from "../Componect/AboutCard";
 
 const About = () => {
@@ -59,7 +60,7 @@ const About = () => {
       <PageBanner
         title="About Us"
         breadcrumb="About Us"
-        bgImage="/Futures-in-Stock-Market.webp"
+        bgImage="https://images.unsplash.com/photo-1639825752750-5061ded5503b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dHJhZGluZyUyMHdoaXRlJTIwY2hhcnR8ZW58MHx8MHx8fDA%3D"
       />
 
       {/* Section 1: Intro Cards */}
@@ -120,16 +121,16 @@ const About = () => {
       </section>
 
       {/* Section 2: Fixed Background with Text & Image */}
-      <section
-        className="relative w-full py-14 sm:py-20 px-4 sm:px-6 
-  bg-cover bg-center overflow-hidden"
-        style={{
-          backgroundImage:
-            "url(https://media.istockphoto.com/id/1465618017/photo/businessmen-investor-think-before-buying-stock-market-investment-using-smartphone-to-analyze.jpg?s=612x612&w=0&k=20&c=YNEkfoME1jbz6FUJImxCQtaGZZntrf7u-Byxmgk4pOY=)",
-        }}
-      >
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/40"></div>
+
+      <section className="relative w-full py-14 sm:py-20 px-4 sm:px-6 overflow-hidden">
+        {/* FIXED BACKGROUND IMAGE */}
+        <div
+          className="absolute inset-0 bg-[url('https://media.istockphoto.com/id/1465618017/photo/businessmen-investor-think-before-buying-stock-market-investment-using-smartphone-to-analyze.jpg?s=612x612&w=0&k=20&c=YNEkfoME1jbz6FUJImxCQtaGZZntrf7u-Byxmgk4pOY=')] 
+    bg-cover bg-center bg-fixed"
+        ></div>
+
+        {/* BLACK TRANSPARENT OVERLAY */}
+        <div className="absolute inset-0 bg-black/70"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-10">
           {/* LEFT CONTENT */}
@@ -137,12 +138,14 @@ const About = () => {
             ref={textRef}
             data-type="text"
             className={`w-full md:w-1/2 
-      backdrop-blur-md bg-white/10 
-      rounded-2xl p-6 sm:p-8 lg:p-10
-      transition-all duration-700
-      ${
-        visibleText ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
-      }`}
+        backdrop-blur-md bg-white/10 
+        rounded-2xl p-6 sm:p-8 lg:p-10
+        transition-all duration-700
+        ${
+          visibleText
+            ? "opacity-100 translate-x-0"
+            : "opacity-0 -translate-x-10"
+        }`}
           >
             <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-[#d2aa73] mb-4">
               ABOUT NEBULA FINANCIAL SERVICES LTD
@@ -163,21 +166,38 @@ const About = () => {
             </p>
           </div>
 
-          {/* RIGHT IMAGE */}
-          <div className="w-full md:w-1/2">
-            <img
-              src="http://nebulafinserv.com/assets/img/abtinnerbgsec.jpg"
-              alt="Nebula Team"
-              className="w-full h-[240px] sm:h-[320px] md:h-[420px] 
-        object-cover rounded-2xl shadow-2xl"
-            />
+          {/* RIGHT IMAGE – CARD STYLE ANIMATION */}
+          <div className="w-full md:w-1/2 flex justify-center">
+            <Tilt
+              glareEnable={true}
+              glareMaxOpacity={0.2}
+              glareColor="#e6d7c3"
+              tiltMaxAngleX={12}
+              tiltMaxAngleY={12}
+              className="w-full"
+            >
+              <div
+                className="
+            group bg-white rounded-2xl overflow-hidden
+            border-2 border-[#d2b89f]
+            transform transition-all duration-700
+            hover:scale-105 hover:shadow-2xl
+          "
+              >
+                <img
+                  src="http://nebulafinserv.com/assets/img/abtinnerbgsec.jpg"
+                  alt="Nebula Team"
+                  className="w-full h-[240px] sm:h-[320px] md:h-[420px] object-cover"
+                />
+              </div>
+            </Tilt>
           </div>
         </div>
       </section>
 
       {/* Section 3: Core Values */}
       <section className="py-20 px-5 bg-gray-50 text-center">
-        <h5 className="text-lg font-semibold text-gray-500 mb-2 uppercase tracking-wider">
+        <h5 className="text-xl font-semibold text-black mb-2 uppercase tracking-wider">
           Our Core Value
         </h5>
         <h2 className="text-4xl font-bold text-[#a1785b] mb-4">

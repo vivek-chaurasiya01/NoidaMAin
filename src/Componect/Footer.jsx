@@ -141,12 +141,7 @@ const Footer = () => {
       </div>
 
       {/* SCROLL TO TOP */}
-      <button
-        onClick={scrollToTop}
-        className="fixed bottom-8 right-8 bg-gradient-to-r from-[#d4a25a] to-[#b8873f] p-4 rounded-full shadow-2xl hover:scale-110 transition z-50"
-      >
-        <ArrowUp className="w-6 h-6 text-white" />
-      </button>
+
     </footer>
   );
 };

@@ -16,33 +16,34 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Mobile dropdown toggle
   const toggleDropdown = (name) => {
     setDropdownOpen(dropdownOpen === name ? null : name);
   };
 
   return (
     <nav
-      className={`w-full bg-gradient-to-b from-black to-[#0b0b0b] text-white font-opensans sticky top-0 z-50 transition-all duration-300 ${
+      className={`w-full bg-gradient-to-b from-black to-[#0b0b0b] text-white font-sans sticky top-0 z-50 transition-all duration-300 ${
         scrolled ? "shadow-lg shadow-[#d4af37]/20" : ""
       }`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3 lg:py-5">
-        {/* LOGO */}
-        <div className="flex items-center">
-          <img 
-            src="/logo.png" 
-            alt="Nebula Logo" 
-            className="h-12 sm:h-14 lg:h-16 xl:h-18 w-auto transition-all duration-300" 
-          />
+      <div className="w-full flex items-center justify-between px-7 sm:px-7 md:px-6 lg:px-8 xl:px-10 2xl:px-12 py-3 md:py-4">
+        {/* LOGO - Left Side */}
+        <div className="flex items-center flex-shrink-0">
+          <Link to="/">
+            <img
+              src="/logo.png"
+              alt="Logo"
+              className="h-12 sm:h-13 md:h-13 lg:h-17 xl:h-19 2xl:h-23 w-auto transition-all duration-300"
+            />
+          </Link>
         </div>
 
-        {/* DESKTOP MENU */}
-        <ul className="hidden lg:flex items-center gap-4 xl:gap-7 text-sm xl:text-[15px] font-semibold">
+        {/* DESKTOP MENU - Right Side */}
+        <ul className="hidden lg:flex items-center gap-2 xl:gap-4 2xl:gap-6 text-sm xl:text-base 2xl:text-lg font-medium">
           <li>
             <NavLink
               className={({ isActive }) =>
-                `hover:text-[#d4af37] transition whitespace-nowrap ${
+                `px-2 py-1 hover:text-[#d4af37] transition whitespace-nowrap ${
                   isActive ? "text-[#d2aa73]" : ""
                 }`
               }
@@ -54,7 +55,7 @@ const Navbar = () => {
           <li>
             <NavLink
               className={({ isActive }) =>
-                `hover:text-[#d4af37] transition whitespace-nowrap ${
+                `px-2 py-1 hover:text-[#d4af37] transition whitespace-nowrap ${
                   isActive ? "text-[#d2aa73]" : ""
                 }`
               }
@@ -63,11 +64,10 @@ const Navbar = () => {
               About
             </NavLink>
           </li>
-
           <li>
             <NavLink
               className={({ isActive }) =>
-                `hover:text-[#d4af37] transition whitespace-nowrap ${
+                `px-2 py-1 hover:text-[#d4af37] transition whitespace-nowrap ${
                   isActive ? "text-[#d2aa73]" : ""
                 }`
               }
@@ -76,11 +76,10 @@ const Navbar = () => {
               Services
             </NavLink>
           </li>
-
           <li>
             <NavLink
               className={({ isActive }) =>
-                `hover:text-[#d4af37] transition whitespace-nowrap ${
+                `px-2 py-1 hover:text-[#d4af37] transition whitespace-nowrap ${
                   isActive ? "text-[#d2aa73]" : ""
                 }`
               }
@@ -90,11 +89,10 @@ const Navbar = () => {
             </NavLink>
           </li>
 
-          {/* ================= INSTRUMENTS ================= */}
+          {/* Instruments Dropdown */}
           <li className="relative group">
-            {/* Trigger */}
             <div
-              className={`flex items-center gap-1 cursor-pointer hover:text-[#d4af37] transition whitespace-nowrap ${
+              className={`flex items-center gap-1 px-2 py-1 cursor-pointer hover:text-[#d4af37] transition whitespace-nowrap ${
                 ["/forex", "/metals", "/oil", "/index", "/crypto"].includes(
                   location.pathname
                 )
@@ -102,37 +100,50 @@ const Navbar = () => {
                   : ""
               }`}
             >
-              Instruments <span className="hidden xl:inline">List</span>
-              <ChevronDown size={14} />
+              Instruments
+              <ChevronDown size={16} className="group-hover:rotate-180 transition-transform" />
             </div>
 
-            {/* Dark Background (Navbar style) */}
-            <div
-              className="absolute left-0 top-full w-full h-20 bg-gradient-to-b from-black to-[#0b0b0b]
-              opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none"
-            ></div>
-
-            {/* Dropdown */}
-            <ul
-              className="absolute left-0 top-full mt-4 w-56 bg-white text-black rounded-md shadow-xl
-              opacity-0 invisible translate-y-2
-              group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
-              transition-all duration-300 z-50"
-            >
-              <li className="px-5 py-2 hover:bg-[#d4af37] hover:text-white transition border-b border-[#d2aa73]">
-                <Link to="/forex">Forex</Link>
+            <ul className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 translate-y-2 transition-all duration-300 z-50 divide-y-2 divide-[rgb(201,164,106)]">
+              <li>
+                <Link
+                  to="/forex"
+                  className="block px-4 py-3 text-black hover:bg-[#d4af37] hover:text-white transition"
+                >
+                  Forex
+                </Link>
               </li>
-              <li className="px-5 py-2 hover:bg-[#d4af37] hover:text-white transition border-b border-[#d2aa73]">
-                <Link to="/metals">Metals</Link>
+              <li>
+                <Link
+                  to="/metals"
+                  className="block px-4 py-3 text-black hover:bg-[#d4af37] hover:text-white transition"
+                >
+                  Metals
+                </Link>
               </li>
-              <li className="px-5 py-2 hover:bg-[#d4af37] hover:text-white transition border-b border-[#d2aa73]">
-                <Link to="/oil">Oil & Commodities</Link>
+              <li>
+                <Link
+                  to="/oil"
+                  className="block px-4 py-3 text-black hover:bg-[#d4af37] hover:text-white transition"
+                >
+                  Oil & Commodities
+                </Link>
               </li>
-              <li className="px-5 py-2 hover:bg-[#d4af37] hover:text-white transition border-b border-[#d2aa73]">
-                <Link to="/index">Spot Index</Link>
+              <li>
+                <Link
+                  to="/index"
+                  className="block px-4 py-3 text-black hover:bg-[#d4af37] hover:text-white transition"
+                >
+                  Spot Index
+                </Link>
               </li>
-              <li className="px-5 py-2 hover:bg-[#d4af37] hover:text-white transition">
-                <Link to="/crypto">Cryptocurrency</Link>
+              <li>
+                <Link
+                  to="/crypto"
+                  className="block px-4 py-3 text-black hover:bg-[#d4af37] hover:text-white transition"
+                >
+                  Cryptocurrency
+                </Link>
               </li>
             </ul>
           </li>
@@ -140,7 +151,7 @@ const Navbar = () => {
           <li>
             <NavLink
               className={({ isActive }) =>
-                `hover:text-[#d4af37] transition whitespace-nowrap ${
+                `px-2 py-1 hover:text-[#d4af37] transition whitespace-nowrap ${
                   isActive ? "text-[#d2aa73]" : ""
                 }`
               }
@@ -150,10 +161,10 @@ const Navbar = () => {
             </NavLink>
           </li>
 
-          {/* ================= CALCULATOR ================= */}
+          {/* Calculator Dropdown */}
           <li className="relative group">
             <div
-              className={`flex items-center gap-1 cursor-pointer hover:text-[#d4af37] transition whitespace-nowrap ${
+              className={`flex items-center gap-1 px-2 py-1 cursor-pointer hover:text-[#d4af37] transition whitespace-nowrap ${
                 ["/margin-calculator", "/profit-calculator"].includes(
                   location.pathname
                 )
@@ -161,33 +172,34 @@ const Navbar = () => {
                   : ""
               }`}
             >
-              Calculator <ChevronDown size={14} />
+              Calculator
+              <ChevronDown size={16} className="group-hover:rotate-180 transition-transform" />
             </div>
 
-            <div
-              className="absolute left-0 top-full w-full h-20 bg-gradient-to-b from-black to-[#0b0b0b]
-              opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none"
-            ></div>
-
-            <ul
-              className="absolute left-0 top-full mt-4 w-56 bg-white text-black rounded-md shadow-xl
-              opacity-0 invisible translate-y-2
-              group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
-              transition-all duration-300 z-50"
-            >
-              <li className="px-5 py-2 hover:bg-[#d4af37] hover:text-white transition border-b border-[#d2aa73]">
-                <Link to="/margin-calculator">Margin Calculator</Link>
+            <ul className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 translate-y-2 transition-all duration-300 z-50 divide-y-2 divide-[rgb(201,164,106)]">
+              <li>
+                <Link
+                  to="/margin-calculator"
+                  className="block px-4 py-3 text-black hover:bg-[#d4af37] hover:text-white transition"
+                >
+                  Margin Calculator
+                </Link>
               </li>
-              <li className="px-5 py-2 hover:bg-[#d4af37] hover:text-white transition">
-                <Link to="/profit-calculator">Profit Calculator</Link>
+              <li>
+                <Link
+                  to="/profit-calculator"
+                  className="block px-4 py-3 text-black hover:bg-[#d4af37] hover:text-white transition"
+                >
+                  Profit Calculator
+                </Link>
               </li>
             </ul>
           </li>
 
-          {/* ================= PLATFORM ================= */}
+          {/* Platform Dropdown */}
           <li className="relative group">
             <div
-              className={`flex items-center gap-1 cursor-pointer hover:text-[#d4af37] transition whitespace-nowrap ${
+              className={`flex items-center gap-1 px-2 py-1 cursor-pointer hover:text-[#d4af37] transition whitespace-nowrap ${
                 ["/mt5-windows", "/mt5-android", "/mt5-ios"].includes(
                   location.pathname
                 )
@@ -195,28 +207,34 @@ const Navbar = () => {
                   : ""
               }`}
             >
-              Platform <ChevronDown size={14} />
+              Platform
+              <ChevronDown size={16} className="group-hover:rotate-180 transition-transform" />
             </div>
 
-            <div
-              className="absolute left-0 top-full w-full h-20 bg-gradient-to-b from-black to-[#0b0b0b]
-              opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none"
-            ></div>
-
-            <ul
-              className="absolute left-0 top-full mt-4 w-56 bg-white text-black rounded-md shadow-xl
-              opacity-0 invisible translate-y-2
-              group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
-              transition-all duration-300 z-50"
-            >
-              <li className="px-5 py-2 hover:bg-[#d4af37] hover:text-white transition border-b border-[#d2aa73]">
-                <Link to="/mt5-windows">MT5 For Windows</Link>
+            <ul className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 translate-y-2 transition-all duration-300 z-50 divide-y-2 divide-[rgb(201,164,106)]">
+              <li>
+                <Link
+                  to="/mt5-windows"
+                  className="block px-4 py-3 text-black hover:bg-[#d4af37] hover:text-white transition"
+                >
+                  MT5 Windows
+                </Link>
               </li>
-              <li className="px-5 py-2 hover:bg-[#d4af37] hover:text-white transition border-b border-[#d2aa73]">
-                <Link to="/mt5-android">MT5 For Android</Link>
+              <li>
+                <Link
+                  to="/mt5-android"
+                  className="block px-4 py-3 text-black hover:bg-[#d4af37] hover:text-white transition"
+                >
+                  MT5 Android
+                </Link>
               </li>
-              <li className="px-5 py-2 hover:bg-[#d4af37] hover:text-white transition">
-                <Link to="/mt5-ios">MT5 For IOS</Link>
+              <li>
+                <Link
+                  to="/mt5-ios"
+                  className="block px-4 py-3 text-black hover:bg-[#d4af37] hover:text-white transition"
+                >
+                  MT5 iOS
+                </Link>
               </li>
             </ul>
           </li>
@@ -224,7 +242,7 @@ const Navbar = () => {
           <li>
             <NavLink
               className={({ isActive }) =>
-                `hover:text-[#d4af37] transition whitespace-nowrap ${
+                `px-2 py-1 hover:text-[#d4af37] transition whitespace-nowrap ${
                   isActive ? "text-[#d2aa73]" : ""
                 }`
               }
@@ -235,195 +253,197 @@ const Navbar = () => {
           </li>
         </ul>
 
-        {/* MOBILE BUTTON */}
-        <button 
-          className="lg:hidden p-2 hover:bg-gray-800 rounded-md transition" 
+        {/* MOBILE MENU BUTTON */}
+        <button
+          className="lg:hidden p-2 hover:bg-gray-800 rounded-md transition flex-shrink-0"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
-          {open ? <X size={26} /> : <Menu size={26} />}
+          {open ? (
+            <X size={24} className="sm:w-6 sm:h-6 md:w-7 md:h-7" />
+          ) : (
+            <Menu size={24} className="sm:w-6 sm:h-6 md:w-7 md:h-7" />
+          )}
         </button>
       </div>
 
       {/* MOBILE MENU */}
-      {open && (
-        <div className="lg:hidden bg-gradient-to-b from-black to-[#0b0b0b] border-t border-[#d2aa73]">
-          <style jsx>{`
-            @keyframes slideDown {
-              from {
-                opacity: 0;
-                transform: translateY(-10px);
-              }
-              to {
-                opacity: 1;
-                transform: translateY(0);
-              }
-            }
-            @keyframes fadeIn {
-              from {
-                opacity: 0;
-              }
-              to {
-                opacity: 1;
-              }
-            }
-          `}</style>
-          
-          <div style={{ animation: "slideDown 0.3s ease-out" }}>
-            <ul className="flex flex-col items-center px-4 sm:px-6 py-4 text-sm font-semibold">
-              {/* Simple Links */}
-              {[
-                { to: "/", label: "Home" },
-                { to: "/about", label: "About" },
-                { to: "/services", label: "Services" },
-                { to: "/account-types", label: "Account Types" },
-              ].map((item) => (
-                <li key={item.to} className="w-full py-3 border-b border-[#d2aa73]/30">
-                  <NavLink
-                    className={({ isActive }) =>
-                      `block text-center hover:text-[#d4af37] transition ${
-                        isActive ? "text-[#d2aa73]" : ""
-                      }`
-                    }
-                    to={item.to}
-                    onClick={() => setOpen(false)}
+      <div
+        className={`lg:hidden bg-gradient-to-b from-black to-[#0b0b0b] border-t border-gray-800 overflow-y-auto transition-all duration-300 absolute top-full left-0 right-0 z-[60] ${
+          open ? "max-h-[80vh] opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6">
+          <ul className="flex flex-col space-y-2 sm:space-y-3 md:space-y-4">
+            {[
+              { to: "/", label: "Home" },
+              { to: "/about", label: "About" },
+              { to: "/services", label: "Services" },
+              { to: "/account-types", label: "Account Types" },
+            ].map((item) => (
+              <li key={item.to} className="border-b border-gray-800 last:border-b-0">
+                <NavLink
+                  className={({ isActive }) =>
+                    `block py-3 sm:py-4 md:py-5 text-base sm:text-lg md:text-xl font-semibold text-center hover:text-[#d4af37] transition ${
+                      isActive ? "text-[#d2aa73]" : ""
+                    }`
+                  }
+                  to={item.to}
+                  onClick={() => setOpen(false)}
+                >
+                  {item.label}
+                </NavLink>
+              </li>
+            ))}
+
+            {/* Instruments Dropdown Mobile */}
+            <li className="border-b border-gray-800">
+              <button
+                className="flex items-center justify-center w-full py-3 sm:py-4 md:py-5 text-base sm:text-lg md:text-xl font-semibold hover:text-[#d4af37] transition gap-2"
+                onClick={() => toggleDropdown("instruments")}
+              >
+                <span>Instruments</span>
+                <ChevronDown
+                  size={20}
+                  className={`transition-transform ${
+                    dropdownOpen === "instruments" ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+              {dropdownOpen === "instruments" && (
+                <div className="pb-2 mt-2">
+                  {[
+                    { to: "/forex", label: "Forex" },
+                    { to: "/metals", label: "Metals" },
+                    { to: "/oil", label: "Oil & Commodities" },
+                    { to: "/index", label: "Spot Index" },
+                    { to: "/crypto", label: "Cryptocurrency" },
+                  ].map((item, index) => (
+                    <Link
+                      key={item.to}
+                      to={item.to}
+                      className="block py-2.5 text-sm sm:text-base md:text-lg text-center text-white hover:text-[#d4af37] transition-all duration-300"
+                      onClick={() => {
+                        setOpen(false);
+                        setDropdownOpen(null);
+                      }}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </li>
+
+            {/* Academy */}
+            <li className="border-b border-gray-800">
+              <NavLink
+                className={({ isActive }) =>
+                  `block py-3 sm:py-4 md:py-5 text-base sm:text-lg md:text-xl font-semibold text-center hover:text-[#d4af37] transition ${
+                    isActive ? "text-[#d2aa73]" : ""
+                  }`
+                }
+                to="/academy"
+                onClick={() => setOpen(false)}
+              >
+                Academy
+              </NavLink>
+            </li>
+
+            {/* Calculator Dropdown Mobile */}
+            <li className="border-b border-gray-800">
+              <button
+                className="flex items-center justify-center w-full py-3 sm:py-4 md:py-5 text-base sm:text-lg md:text-xl font-semibold hover:text-[#d4af37] transition gap-2"
+                onClick={() => toggleDropdown("calculator")}
+              >
+                <span>Calculator</span>
+                <ChevronDown
+                  size={20}
+                  className={`transition-transform ${
+                    dropdownOpen === "calculator" ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+              {dropdownOpen === "calculator" && (
+                <div className="pb-2 mt-2">
+                  <Link
+                    to="/margin-calculator"
+                    className="block py-2.5 text-sm sm:text-base md:text-lg text-center text-white hover:text-[#d4af37] transition-all duration-300"
+                    onClick={() => {
+                      setOpen(false);
+                      setDropdownOpen(null);
+                    }}
                   >
-                    {item.label}
-                  </NavLink>
-                </li>
-              ))}
+                    Margin Calculator
+                  </Link>
+                  <Link
+                    to="/profit-calculator"
+                    className="block py-2.5 text-sm sm:text-base md:text-lg text-center text-white hover:text-[#d4af37] transition-all duration-300"
+                    onClick={() => {
+                      setOpen(false);
+                      setDropdownOpen(null);
+                    }}
+                  >
+                    Profit Calculator
+                  </Link>
+                </div>
+              )}
+            </li>
 
-              {/* Instruments Dropdown Mobile */}
-              <li className="w-full py-3 border-b border-[#d2aa73]/30">
-                <button
-                  className="flex items-center justify-center w-full gap-1 hover:text-[#d4af37] transition"
-                  onClick={() => toggleDropdown("instruments")}
-                >
-                  Instruments List <ChevronDown size={14} className={`transition-transform ${dropdownOpen === "instruments" ? "rotate-180" : ""}`} />
-                </button>
-                {dropdownOpen === "instruments" && (
-                  <div style={{ animation: "fadeIn 0.2s ease-out" }} className="mt-2 bg-gray-900 rounded-md py-2">
-                    {[
-                      { to: "/forex", label: "Forex" },
-                      { to: "/metals", label: "Metals" },
-                      { to: "/oil", label: "Oil & Commodities" },
-                      { to: "/index", label: "Spot Index" },
-                      { to: "/crypto", label: "Cryptocurrency" },
-                    ].map((item) => (
-                      <Link
-                        key={item.to}
-                        to={item.to}
-                        className="block py-2 text-center hover:text-[#d4af37] transition"
-                        onClick={() => {
-                          setOpen(false);
-                          setDropdownOpen(null);
-                        }}
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </li>
-
-              {/* Academy */}
-              <li className="w-full py-3 border-b border-[#d2aa73]/30">
-                <NavLink
-                  className={({ isActive }) =>
-                    `block text-center hover:text-[#d4af37] transition ${
-                      isActive ? "text-[#d2aa73]" : ""
-                    }`
-                  }
-                  to="/academy"
-                  onClick={() => setOpen(false)}
-                >
-                  Academy
-                </NavLink>
-              </li>
-
-              {/* Calculator Dropdown Mobile */}
-              <li className="w-full py-3 border-b border-[#d2aa73]/30">
-                <button
-                  className="flex items-center justify-center w-full gap-1 hover:text-[#d4af37] transition"
-                  onClick={() => toggleDropdown("calculator")}
-                >
-                  Calculator <ChevronDown size={14} className={`transition-transform ${dropdownOpen === "calculator" ? "rotate-180" : ""}`} />
-                </button>
-                {dropdownOpen === "calculator" && (
-                  <div style={{ animation: "fadeIn 0.2s ease-out" }} className="mt-2 bg-gray-900 rounded-md py-2">
+            {/* Platform Dropdown Mobile */}
+            <li className="border-b border-gray-800">
+              <button
+                className="flex items-center justify-center w-full py-3 sm:py-4 md:py-5 text-base sm:text-lg md:text-xl font-semibold hover:text-[#d4af37] transition gap-2"
+                onClick={() => toggleDropdown("platform")}
+              >
+                <span>Platform</span>
+                <ChevronDown
+                  size={20}
+                  className={`transition-transform ${
+                    dropdownOpen === "platform" ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+              {dropdownOpen === "platform" && (
+                <div className="pb-2 mt-2">
+                  {[
+                    { to: "/mt5-windows", label: "MT5 Windows" },
+                    { to: "/mt5-android", label: "MT5 Android" },
+                    { to: "/mt5-ios", label: "MT5 iOS" },
+                  ].map((item, index) => (
                     <Link
-                      to="/margin-calculator"
-                      className="block py-2 text-center hover:text-[#d4af37] transition"
+                      key={item.to}
+                      to={item.to}
+                      className="block py-2.5 text-sm sm:text-base md:text-lg text-center text-white hover:text-[#d4af37] transition-all duration-300"
                       onClick={() => {
                         setOpen(false);
                         setDropdownOpen(null);
                       }}
                     >
-                      Margin Calculator
+                      {item.label}
                     </Link>
-                    <Link
-                      to="/profit-calculator"
-                      className="block py-2 text-center hover:text-[#d4af37] transition"
-                      onClick={() => {
-                        setOpen(false);
-                        setDropdownOpen(null);
-                      }}
-                    >
-                      Profit Calculator
-                    </Link>
-                  </div>
-                )}
-              </li>
+                  ))}
+                </div>
+              )}
+            </li>
 
-              {/* Platform Dropdown Mobile */}
-              <li className="w-full py-3 border-b border-[#d2aa73]/30">
-                <button
-                  className="flex items-center justify-center w-full gap-1 hover:text-[#d4af37] transition"
-                  onClick={() => toggleDropdown("platform")}
-                >
-                  Platform <ChevronDown size={14} className={`transition-transform ${dropdownOpen === "platform" ? "rotate-180" : ""}`} />
-                </button>
-                {dropdownOpen === "platform" && (
-                  <div style={{ animation: "fadeIn 0.2s ease-out" }} className="mt-2 bg-gray-900 rounded-md py-2">
-                    {[
-                      { to: "/mt5-windows", label: "MT5 For Windows" },
-                      { to: "/mt5-android", label: "MT5 For Android" },
-                      { to: "/mt5-ios", label: "MT5 For IOS" },
-                    ].map((item) => (
-                      <Link
-                        key={item.to}
-                        to={item.to}
-                        className="block py-2 text-center hover:text-[#d4af37] transition"
-                        onClick={() => {
-                          setOpen(false);
-                          setDropdownOpen(null);
-                        }}
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </li>
-
-              {/* Contact */}
-              <li className="w-full py-3">
-                <NavLink
-                  className={({ isActive }) =>
-                    `block text-center hover:text-[#d4af37] transition ${
-                      isActive ? "text-[#d2aa73]" : ""
-                    }`
-                  }
-                  to="/contact"
-                  onClick={() => setOpen(false)}
-                >
-                  Contact
-                </NavLink>
-              </li>
-            </ul>
-          </div>
+            {/* Contact */}
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  `block py-3 sm:py-4 md:py-5 text-base sm:text-lg md:text-xl font-semibold text-center hover:text-[#d4af37] transition ${
+                    isActive ? "text-[#d2aa73]" : ""
+                  }`
+                }
+                to="/contact"
+                onClick={() => setOpen(false)}
+              >
+                Contact
+              </NavLink>
+            </li>
+          </ul>
         </div>
-      )}
+      </div>
     </nav>
   );
 };

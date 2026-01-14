@@ -22,14 +22,14 @@ import ProfitCalculator from "./pages/ProfitCalculator";
 import MT5Windows from "./pages/MT5Windows";
 import MT5Android from "./pages/MT5Android";
 import MT5IOS from "./pages/MT5IOS";
-import AppLayout from "./Componect/AppLayout";
 import Footer from "./Componect/Footer";
 import ScrollToTop from "./Componect/ScrollToTop";
+import ScrollToTopButton from "./Componect/ScrollToTopButton";
 
 function App() {
   return (
-    <AppLayout>
-          <ScrollToTop /> 
+    <>
+      <ScrollToTop />
       <TopHeader />
       <Navbar />
 
@@ -56,7 +56,8 @@ function App() {
       </Routes>
 
       <Footer />
-    </AppLayout>
+      <ScrollToTopButton />
+    </>
   );
 }
 
