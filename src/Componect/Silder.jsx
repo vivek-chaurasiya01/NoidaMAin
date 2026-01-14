@@ -30,7 +30,7 @@ const HeroSlider = () => {
   }, []);
 
   return (
-    <section className="relative  w-full h-screen overflow-hidden bg-gradient-to-b from-black to-[#0b0b0b]">
+    <section className="relative  w-full h-[700px] overflow-hidden bg-gradient-to-b from-black to-[#0b0b0b]">
 
       {/* BACKGROUND GRAPH EFFECT */}
       <div className="absolute inset-0 bg-[url('/graph-bg.png')] bg-cover bg-center opacity-20"></div>
@@ -41,7 +41,7 @@ const HeroSlider = () => {
           className={`absolute inset-0 transition-all duration-1000 ease-in-out
             ${i === index ? "opacity-100 translate-x-0" : i < index ? "opacity-0 -translate-x-full" : "opacity-0 translate-x-full"}`}
         >
-          <div className="relative z-10 w-full h-full flex flex-col-reverse lg:flex-row items-center justify-center px-4 sm:px-6 py-8 lg:py-0">
+          <div className="relative z-10 max-w-7xl mx-auto h-full flex flex-col-reverse lg:flex-row items-center justify-center px-4 sm:px-6 py-8 lg:py-0">
 
             {/* TEXT CONTENT */}
             <div className="w-full lg:w-1/2 text-center lg:text-left text-white mt-6 lg:mt-0">
