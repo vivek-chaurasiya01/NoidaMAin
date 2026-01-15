@@ -37,7 +37,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-20 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 text-sm">
           {/* ADDRESS */}
-          <div>
+          <div className="text-center md:text-left">
             <h4 className="text-[#d2aa73] text-2xl font-semibold mb-4">
               Address
             </h4>
@@ -57,11 +57,11 @@ const Footer = () => {
           </div>
 
           {/* USEFUL LINKS */}
-          <div>
+          <div className="text-center md:text-left">
             <h4 className="text-[#d2aa73] text-2xl font-semibold mb-4">
               Useful Links
             </h4>
-            <ul className="space-y-3 text-xl">
+            <ul className="space-y-3 text-xl flex flex-col items-center md:items-start">
               {[
                 { name: "About us", link: "/about" },
                 { name: "Trading", link: "/trading" },
@@ -83,11 +83,11 @@ const Footer = () => {
           </div>
 
           {/* INSTRUMENTS */}
-          <div>
+          <div className="text-center md:text-left">
             <h4 className="text-[#d2aa73] text-2xl font-semibold mb-4">
               Instruments List
             </h4>
-            <ul className="space-y-3 text-xl">
+            <ul className="space-y-3 text-xl flex flex-col items-center md:items-start">
               {[
                 { name: "Forex", link: "/instruments/forex" },
                 { name: "Metals", link: "/instruments/metals" },
@@ -109,11 +109,11 @@ const Footer = () => {
           </div>
 
           {/* OTHER LINKS */}
-          <div>
+          <div className="text-center md:text-left">
             <h4 className="text-[#d2aa73] text-2xl font-semibold mb-4">
               Other Links
             </h4>
-            <ul className="space-y-3 text-xl">
+            <ul className="space-y-3 text-xl flex flex-col items-center md:items-start">
               {[
                 { name: "Economic Calendar", link: "/calendar" },
                 { name: "Market News", link: "/news" },

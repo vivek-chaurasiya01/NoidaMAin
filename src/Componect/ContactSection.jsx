@@ -142,7 +142,7 @@ const ContactSection = () => {
                   placeholder="Your Name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-[#d2aa73]"
+                  className="w-full border-2 border-gray-800 bg-white px-4 py-3 text-sm font-bold outline-none focus:border-[#d2aa73]"
                 />
                 <input
                   type="email"
@@ -150,7 +150,7 @@ const ContactSection = () => {
                   placeholder="Your Email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-[#d2aa73]"
+                  className="w-full border-2 border-gray-800 bg-white px-4 py-3 text-sm font-bold outline-none focus:border-[#d2aa73]"
                 />
               </div>
 
@@ -161,7 +161,7 @@ const ContactSection = () => {
                   placeholder="Your Number"
                   value={formData.number}
                   onChange={handleChange}
-                  className="w-full border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-[#d2aa73]"
+                  className="w-full border-2 border-gray-800 bg-white px-4 py-3 text-sm font-bold outline-none focus:border-[#d2aa73]"
                 />
                 <input
                   type="text"
@@ -169,7 +169,7 @@ const ContactSection = () => {
                   placeholder="Your Subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-[#d2aa73]"
+                  className="w-full border-2 border-gray-800 bg-white px-4 py-3 text-sm font-bold outline-none focus:border-[#d2aa73]"
                 />
               </div>
 
@@ -179,7 +179,7 @@ const ContactSection = () => {
                 placeholder="Message"
                 value={formData.message}
                 onChange={handleChange}
-                className="w-full border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-[#d2aa73]"
+                className="w-full border-2 border-gray-800 bg-white px-4 py-3 text-sm font-bold outline-none focus:border-[#d2aa73]"
               ></textarea>
 
               {/* CAPTCHA PLACEHOLDER */}

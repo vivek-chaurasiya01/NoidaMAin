@@ -1,7 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import Tilt from "react-parallax-tilt";
-import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const features = [
   { title: "Tight Raw Spreads from", value: "0.0 pips" },
@@ -11,7 +10,6 @@ const features = [
 ];
 
 const FeaturesBar = () => {
-  const [ref] = useScrollAnimation(0.1);
   const [visibleCards, setVisibleCards] = useState([]);
   const sectionRef = useRef(null);
 
@@ -26,7 +24,7 @@ const FeaturesBar = () => {
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.05, rootMargin: '50px' }
     );
 
     const cards = sectionRef.current?.querySelectorAll(".feature-card");
@@ -57,13 +55,8 @@ const FeaturesBar = () => {
                   border border-black/20
                   shadow-xl transition-all duration-700
                   hover:scale-105 hover:shadow-2xl
-                  ${
-                    visibleCards.includes(i)
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-10"
-                  }
+                  opacity-100 translate-y-0
                 `}
-                style={{ transitionDelay: `${i * 150}ms` }}
               >
                 {/* SOFT HOVER OVERLAY */}
                 <div

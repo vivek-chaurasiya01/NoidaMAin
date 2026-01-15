@@ -34,7 +34,7 @@ const ForexSteps = () => {
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.05, rootMargin: '50px' }
     );
 
     const cards = sectionRef.current?.querySelectorAll(".step-card");
@@ -75,13 +75,7 @@ const ForexSteps = () => {
               className="step-card"
             >
               <div
-                className={`bg-[#b9935a] text-white rounded-2xl px-8 py-14 shadow-xl 
-                transition-all duration-700 hover:scale-105 hover:shadow-2xl
-                ${
-                  visibleCards.includes(index)
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-10"
-                }`}
+                className="bg-[#b9935a] text-white rounded-2xl px-8 py-14 shadow-xl transition-all duration-700 hover:scale-105 hover:shadow-2xl opacity-100 translate-y-0"
               >
                 {/* ICON */}
                 <img

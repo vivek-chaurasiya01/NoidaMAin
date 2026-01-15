@@ -16,7 +16,7 @@ const OpportunitySection = () => {
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.05, rootMargin: '100px' }
     );
 
     const cards = sectionRef.current?.querySelectorAll(".op-card");
@@ -76,13 +76,8 @@ const OpportunitySection = () => {
                   shadow-lg
                   transition-all duration-700
                   hover:scale-105 hover:shadow-2xl
-                  ${
-                    visibleCards.includes(index)
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-10"
-                  }
+                  opacity-100 translate-y-0
                 `}
-                style={{ transitionDelay: `${index * 150}ms` }}
               >
                 {/* ICON */}
                 <img

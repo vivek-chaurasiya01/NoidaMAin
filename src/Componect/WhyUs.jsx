@@ -44,7 +44,7 @@ const WhyUs = () => {
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.05, rootMargin: '50px' }
     );
 
     const cards = sectionRef.current?.querySelectorAll(".whyus-card");
@@ -92,17 +92,7 @@ const WhyUs = () => {
               className="whyus-card"
             >
               <div
-                className={`
-                  bg-[#c49a5c] text-white rounded-2xl
-                  py-10 px-4 text-center min-h-[280px]
-                  shadow-xl transition-all duration-700
-                  hover:scale-105 hover:shadow-2xl
-                  ${
-                    visibleCards.includes(index)
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-10"
-                  }
-                `}
+                className="bg-[#c49a5c] text-white rounded-2xl py-10 px-4 text-center min-h-[280px] shadow-xl transition-all duration-700 hover:scale-105 hover:shadow-2xl opacity-100 translate-y-0"
               >
                 <img
                   src={item.icon}

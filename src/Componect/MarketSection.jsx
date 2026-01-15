@@ -1,7 +1,29 @@
-import { useScrollAnimation } from "../hooks/useScrollAnimation";
+import { useEffect, useRef, useState } from "react";
 
 const MarketSection = () => {
-  const [ref, isVisible] = useScrollAnimation(0.1);
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.05, rootMargin: '50px' }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, []);
   const markets = [
     {
       title: "FOREX",
@@ -54,12 +76,7 @@ const MarketSection = () => {
         {markets.map((item, index) => (
           <div
             key={index}
-            className="relative bg-white rounded-2xl overflow-hidden p-8 min-h-[450px] flex flex-col items-center justify-center group cursor-pointer shadow-xl transition-all duration-500 hover:scale-105"
-            style={{
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? 'translateY(0)' : 'translateY(50px)',
-              transitionDelay: `${index * 150}ms`
-            }}
+            className="relative bg-white rounded-2xl overflow-hidden p-8 min-h-[450px] flex flex-col items-center justify-center group cursor-pointer shadow-xl transition-all duration-500 hover:scale-105 opacity-100 translate-y-0"
           >
             {/* BACKGROUND IMAGE INSIDE CARD */}
             <div 

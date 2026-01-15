@@ -1,8 +1,30 @@
-import { useScrollAnimation } from "../hooks/useScrollAnimation";
+import { useEffect, useRef, useState } from "react";
 import Tilt from "react-parallax-tilt";
 
 const IntroducingBroker = () => {
-  const [ref, isVisible] = useScrollAnimation(0.1);
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.05, rootMargin: '50px' }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, []);
 
   return (
     <section ref={ref} className="w-full bg-[#f7fafc] py-20 md:py-24 lg:py-28">
@@ -10,11 +32,7 @@ const IntroducingBroker = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
           {/* LEFT IMAGE BLOCK WITH CARD ANIMATION */}
           <div
-            className="flex justify-center lg:justify-start transition-all duration-700"
-            style={{
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? "translateX(0)" : "translateX(-50px)",
-            }}
+            className="flex justify-center lg:justify-start transition-all duration-700 opacity-100 translate-x-0"
           >
             <Tilt
               tiltMaxAngleX={10}
@@ -40,12 +58,7 @@ const IntroducingBroker = () => {
 
           {/* RIGHT CONTENT */}
           <div
-            className="flex flex-col justify-center text-left transition-all duration-700"
-            style={{
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? "translateX(0)" : "translateX(50px)",
-              transitionDelay: "200ms",
-            }}
+            className="flex flex-col justify-center text-left transition-all duration-700 opacity-100 translate-x-0"
           >
             {/* HEADING */}
             <h2 className="text-3xl lg:text-[38px] font-bold text-gray-700 leading-snug">
